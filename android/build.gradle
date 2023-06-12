@@ -1,0 +1,43 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext {
+        buildToolsVersion = "33.0.0"
+        minSdkVersion = 21
+        compileSdkVersion = 33
+        targetSdkVersion = 33
+
+        // We use NDK 23 which has both M1 support and is the side-by-side NDK version from AGP.
+        ndkVersion = "23.1.7779620"
+
+        //Geo location wala kam
+        firebaseCoreVersion = "17.4.4"                  // Or higher.
+        firebaseFirestoreVersion = "21.5.0"             // Or higher.
+        //Geo location wala kam
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:7.3.1")
+        classpath("com.facebook.react:react-native-gradle-plugin")
+        //new code firebase
+        classpath 'com.google.gms:google-services:4.3.15'
+        //new code firebase
+    }
+}
+
+//geo location wala kam
+allprojects {
+    repositories {
+       mavenLocal()
+       maven {
+           // Required react-native-background-geolocation-firebase
+          url("${project(':react-native-background-geolocation-firebase').projectDir}/libs")
+      }
+
+    }
+}
+//geo location wala kam
+
